@@ -1,0 +1,8 @@
+.idea
+.nyc_output
+coverage
+src
+test
+
+.editorconfig
+npm-debug.log
