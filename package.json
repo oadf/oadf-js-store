@@ -1,7 +1,7 @@
 {
   "name": "oadf-js-store",
   "description": "A JavaScript implementation of the OADF schema which stores data in memory.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "Christoph Kraemer <ck@ladb.de>",
   "license": "MIT",
   "repository": {
@@ -14,7 +14,7 @@
   "keywords": [
     "oadf"
   ],
-  "main": "lib/ObjectStore.js",
+  "main": "lib/Store.js",
   "scripts": {
     "build": "babel src --out-dir lib",
     "test": "nyc --require babel-register mocha",
