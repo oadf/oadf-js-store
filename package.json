@@ -1,7 +1,7 @@
 {
   "name": "oadf-js-store",
   "description": "A JavaScript implementation of the OADF schema which stores data in memory.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Christoph Kraemer <ck@ladb.de>",
   "license": "MIT",
   "repository": {
@@ -19,7 +19,8 @@
     "build": "babel src --out-dir lib",
     "test": "nyc --require babel-register mocha",
     "coverage": "nyc --require babel-register --reporter=html mocha",
-    "coveralls": "nyc report --reporter=text-lcov | coveralls"
+    "coveralls": "nyc report --reporter=text-lcov | coveralls",
+    "prepublish": "npm run build"
   },
   "dependencies": {
     "graphql": "^0.9.1",
