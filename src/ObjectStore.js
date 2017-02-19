@@ -15,7 +15,7 @@ export default class ObjectStore {
       return this.keyMap.get(key);
     }
 
-    const id = this.idGen.generate(object.type);
+    const id = this.idGen.generate();
     object.id = id;
     this.idMap = this.idMap.set(id, object);
     this.keyMap = this.keyMap.set(key, id);
