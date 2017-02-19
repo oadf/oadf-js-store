@@ -9,6 +9,7 @@ import {
   GraphQLInterfaceType,
   GraphQLObjectType,
   GraphQLString,
+  GraphQLBoolean,
 } from 'graphql';
 import t from './types';
 import Store from './ObjectStore';
@@ -63,6 +64,9 @@ export default class OADFStore {
         },
         comment: {
           type: GraphQLString,
+        },
+        automaticTiming: {
+          type: GraphQLBoolean,
         },
       }),
       resolveType(result) {
@@ -241,6 +245,9 @@ export default class OADFStore {
         comment: {
           type: GraphQLString,
         },
+        automaticTiming: {
+          type: GraphQLBoolean,
+        },
       }),
       interfaces: [resultInterface, athleteResultInterface],
     });
@@ -386,6 +393,9 @@ export default class OADFStore {
         },
         comment: {
           type: GraphQLString,
+        },
+        automaticTiming: {
+          type: GraphQLBoolean,
         },
       }),
       interfaces: [resultInterface, athleteResultInterface],
@@ -664,6 +674,9 @@ export default class OADFStore {
         comment: {
           type: GraphQLString,
         },
+        automaticTiming: {
+          type: GraphQLBoolean,
+        },
       }),
       interfaces: [resultInterface],
     });
@@ -747,7 +760,7 @@ export default class OADFStore {
     return this.athleteStore.getByProperty('bib', bib);
   }
 
-  addAthleteResult(athlete, group, performance, exception, wind, position, qualified, weight, comment) {
+  addAthleteResult(athlete, group, performance, exception, wind, position, qualified, weight, comment, automaticTiming = true) {
     const result = {
       type: t.ATHLETE_RESULT,
       athlete,
@@ -759,6 +772,7 @@ export default class OADFStore {
       qualified,
       weight,
       comment,
+      automaticTiming,
     };
     return this.resultStore.add(result, [athlete, null, group, performance, wind]);
   }
@@ -862,7 +876,7 @@ export default class OADFStore {
     this.teamMemberStore.add(teamMember, [result, athlete]);
   }
 
-  addTeamResult(club, group, performance, exception, position, qualified, comment) {
+  addTeamResult(club, group, performance, exception, position, qualified, comment, automaticTiming = true) {
     const result = {
       type: t.TEAM_RESULT,
       club,
@@ -872,6 +886,7 @@ export default class OADFStore {
       position,
       qualified,
       comment,
+      automaticTiming,
     };
     return this.resultStore.add(result, [null, club, group, performance, null]);
   }
@@ -921,7 +936,7 @@ export default class OADFStore {
     return this.combinedDisciplineStore.getByKey([event, discipline]);
   }
 
-  addCombinedResult(athlete, group, parentResult, performance, exception, wind, points, position, qualified, weight, comment) {
+  addCombinedResult(athlete, group, parentResult, performance, exception, wind, points, position, qualified, weight, comment, automaticTiming = true) {
     const result = {
       type: t.COMBINED_RESULT,
       athlete,
@@ -934,6 +949,7 @@ export default class OADFStore {
       qualified,
       weight,
       comment,
+      automaticTiming,
       parentResult,
     };
     return this.resultStore.add(result, [athlete, null, group, performance, wind]);
